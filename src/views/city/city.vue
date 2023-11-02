@@ -42,7 +42,7 @@ const cityStore = useCityStore();
 
 cityStore.fetchAllCitiesAction();
 //解构出来的对象不是响应式，需要用storeToRefs或者toRefs包裹
-const { allCities } = storeToRefs(cityStore);
+const { allCities, curCity } = storeToRefs(cityStore);
 
 const currentCities = computed(() => {
   /* 注意这里写allCities[tabName]是不可以的 */

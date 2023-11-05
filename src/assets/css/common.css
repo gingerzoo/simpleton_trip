@@ -2,8 +2,13 @@
   --primary-color: #ff9854;
   /* 在全局中修改vant组件库中的某个变量一一定要加!important */
   --van-search-left-icon-color: var(--primary-color) !important;
+  --theme-linear-gradient: linear-gradient(90deg, #fa8c1d, #fcaf3f);
 }
 
 body {
   font-size: 14px;
+}
+
+.bottom-gray-line {
+  border-bottom: 1px solid #f5f5f5;
 }

@@ -24,3 +24,7 @@ a {
 img {
   vertical-align: top;
 }
+
+html {
+  line-height: 1.2;
+}

@@ -127,7 +127,13 @@ const { hotWords } = storeToRefs(homeStore);
 
 /* 搜索按钮 */
 const searchBtnClick = () => {
-  router.push("/search");
+  router.push({
+    path: "/search",
+    query: {
+      startDate: startDate.value,
+      endDate: endDate.value,
+    },
+  });
 };
 </script>
 

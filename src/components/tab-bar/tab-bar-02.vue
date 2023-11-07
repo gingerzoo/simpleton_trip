@@ -1,6 +1,11 @@
 <template>
   <div class="tab-bar">
-    <van-tabbar v-model="active" @change="onChange" active-color="#ff9854">
+    <van-tabbar
+      v-model="active"
+      @change="onChange"
+      active-color="#ff9854"
+      route
+    >
       <van-tabbar-item
         v-for="(item, index) in tabbarData"
         key="item.path"
@@ -23,11 +28,19 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import tabbarData from "@/assets/data/tabbar.js";
 import { getAssetUrl } from "@/utils/load_assets.js";
-
+import { useRoute } from "vue-router";
+const route = useRoute();
 const active = ref(0);
+
+watch(route, (newValue, preValue) => {
+  console.log("route发生了变化", newValue);
+  active.value = tabbarData.findIndex(
+    (item, index) => item.path == newValue.path
+  );
+});
 const onChange = (index) => {
   console.log("curIndex", active.value);
 };

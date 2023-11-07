@@ -6,10 +6,12 @@
         <!-- <div class="item">
           {{ house.data.houseName }}
         </div> -->
-        <h3 v-if="house.discoveryContentType === 3">
-          type-9:{{ house.data.houseName }}
-        </h3>
-        <HouseItemV3
+        <HouseItemV2
+          v-if="house.discoveryContentType === 3"
+          :itemData="house.data"
+        />
+
+        <HouseItemV1
           v-else-if="house.discoveryContentType === 9"
           :itemData="house.data"
         />
@@ -21,7 +23,8 @@
 <script setup>
 import useHomeStore from "@/store/modules/home";
 import { storeToRefs } from "pinia";
-import HouseItemV3 from "@/components/house-item/house-item-v1.vue";
+import HouseItemV1 from "@/components/house-item/house-item-v1.vue";
+import HouseItemV2 from "@/components/house-item/house-item-v2.vue";
 
 const homeStore = useHomeStore();
 const { houseList } = storeToRefs(homeStore);
@@ -30,11 +33,17 @@ const { houseList } = storeToRefs(homeStore);
 <style lang="less" scoped>
 .content {
   padding: 8px 10px;
+  // overflow-y: auto;
 
   .title {
     font-size: 22px;
     // padding: 10px;
     padding-left: 10px;
+  }
+
+  .list {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 </style>

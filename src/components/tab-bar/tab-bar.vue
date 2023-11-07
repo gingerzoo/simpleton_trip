@@ -45,6 +45,7 @@ const itemClick = (index, nextPath) => {
   left: 0;
   right: 0;
   border-top: 1px solid orange;
+  background-color: #fff;
 
   .tab-bar-item {
     flex: 1;
@@ -52,6 +53,7 @@ const itemClick = (index, nextPath) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     .text {
       font-size: 12px;
       margin-top: 2px;

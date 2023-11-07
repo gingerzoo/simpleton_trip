@@ -9,7 +9,7 @@
     <HomeSearchBar />
     <HomeCategories />
     <HomeContent />
-    <div @click="homeMoreClick" class="btn">加载更多</div>
+    <div v-show="showTopBar" class="top-bar">我是搜索框</div>
   </div>
 </template>
 
@@ -19,8 +19,9 @@ import HomeSearchBar from "./cpns/home-search-box.vue";
 import HomeCategories from "./cpns/home-categories.vue";
 import HomeContent from "./cpns/home-content.vue";
 import useHomeStore from "@/store/modules/home";
+import useScrollWatch from "@/hooks/useScrollWatch";
 
-import { storeToRefs } from "pinia";
+import { computed, watch, ref } from "vue";
 
 // getHomeHotWords().then((res) => {
 //   console.log("哈哈哈要拿home的数据", res.data);
@@ -34,25 +35,58 @@ homeStore.fetchHomeCategories();
 homeStore.fetchHomeHouseList();
 
 /* 加载更多按钮点击 */
-const { currentPage } = storeToRefs(homeStore);
-
 const homeMoreClick = () => {
-  currentPage++;
-  homeMoreClick.fetchHomeHouseList(currentPage);
+  homeStore.fetchHomeHouseList();
 };
+/* 先把封装好的hook弄过来 */
+/* 第一种方法 */
+// useScrollWatch(homeMoreClick);
+/* 第二种方法 */
+const { IsBottom, scrollTop, viewHeight, scrollHeight } =
+  useScrollWatch(homeMoreClick);
+console.log("scrollTop", scrollTop.value);
+console.log("viewHeight", viewHeight.value);
+console.log("scrollHeight", scrollHeight.value);
+
+watch(IsBottom, (curValue, preValue) => {
+  if (curValue) {
+    homeStore.fetchHomeHouseList().then(() => {
+      /* 这个可别忘了 你这个蠢猪*/
+      IsBottom.value = false;
+    });
+  }
+});
+
+/* 顶部搜索框闪现 */
+// const showTopBar = ref(false);
+// watch(scrollTop, (curValue, preValue) => {
+//   showTopBar.value = curValue.value >= 100;
+// });
+
+const showTopBar = computed(() => {
+  console.log("computed 我开始滚了", showTopBar);
+  return scrollTop.value >= 100;
+});
 </script>
 
 <style lang="less" scoped>
-// .home {
-//   overflow: hidden;
-// }
-
 .home {
-  overflow-y: auto;
-  .btn {
-    padding: 10px 5px;
+  // overflow-y: auto;
+  // height: calc(100vh - 50px);
+
+  .top-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 78px;
     background-color: aqua;
   }
+  // .more-btn {
+  //   color: #000;
+  //   padding: 10px 5px;
+  //   background-color: orangered;
+  // }
 }
 .banner {
   img {

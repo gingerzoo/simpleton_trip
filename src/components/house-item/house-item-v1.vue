@@ -1,12 +1,12 @@
 <template>
   <div class="house-item">
-    <div class="house-item-v3">
+    <div class="house-item-v1 house-item-version">
       <div class="cover">
         <img :src="itemData.image.url" alt="" />
       </div>
       <div class="info">
         <div class="summary">{{ itemData.summaryText }}</div>
-        <div class="desc">{{ itemData.houseName }}</div>
+        <div class="desc two-line-ellipsis">{{ itemData.houseName }}</div>
         <div class="rate-price">
           <van-rate
             :model-value="rateNum"
@@ -37,19 +37,15 @@ const rateNum = computed(() => {
   return Number(props.itemData.commentScore);
 });
 
-console.log("rate", rateNum.value);
+// console.log("rate", rateNum.value);
 </script>
 
 <style lang="less" scoped>
 .house-item {
   width: 50%;
 }
-.house-item-v3 {
+.house-item-v1 {
   position: relative;
-  margin: 5px;
-  background: #fff;
-  border-radius: 5px;
-  overflow: hidden;
 
   .cover {
     img {
@@ -77,13 +73,7 @@ console.log("rate", rateNum.value);
 
     .desc {
       /* 为什么要这么设置我也不懂 */
-      display: -webkit-box;
 
-      -webkit-box-orient: vertical;
-      text-overflow: ellipsis;
-      line-clamp: 2;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
       margin: 5px 0;
     }
   }

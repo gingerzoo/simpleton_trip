@@ -9,23 +9,22 @@
     <HomeSearchBar />
     <HomeCategories />
     <HomeContent />
-    <div v-show="showTopBar" class="top-bar">我是搜索框</div>
+    <TopBar v-show="showTopBar" />
   </div>
 </template>
 
 <script setup>
 import HomeNavBar from "./cpns/home-nav-bar.vue";
 import HomeSearchBar from "./cpns/home-search-box.vue";
+import TopBar from "@/components/top-bar/tor-bar-v2.vue";
 import HomeCategories from "./cpns/home-categories.vue";
 import HomeContent from "./cpns/home-content.vue";
 import useHomeStore from "@/store/modules/home";
+import useMainStore from "@/store/modules/main";
 import useScrollWatch from "@/hooks/useScrollWatch";
 
 import { computed, watch, ref } from "vue";
-
-// getHomeHotWords().then((res) => {
-//   console.log("哈哈哈要拿home的数据", res.data);
-// });
+import { storeToRefs } from "pinia";
 
 const homeStore = useHomeStore();
 /* 别忘了手动调用actions */
@@ -62,32 +61,16 @@ watch(IsBottom, (curValue, preValue) => {
 // watch(scrollTop, (curValue, preValue) => {
 //   showTopBar.value = curValue.value >= 100;
 // });
-
+const mainStore = useMainStore();
+const { nowDate } = storeToRefs(mainStore);
+// const
 const showTopBar = computed(() => {
-  console.log("computed 我开始滚了", showTopBar);
-  return scrollTop.value >= 100;
+  console.log("computed 我开始滚了", showTopBar, scrollTop.value);
+  return scrollTop.value >= 400;
 });
 </script>
 
 <style lang="less" scoped>
-.home {
-  // overflow-y: auto;
-  // height: calc(100vh - 50px);
-
-  .top-bar {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 78px;
-    background-color: aqua;
-  }
-  // .more-btn {
-  //   color: #000;
-  //   padding: 10px 5px;
-  //   background-color: orangered;
-  // }
-}
 .banner {
   img {
     // object-fit: cover;

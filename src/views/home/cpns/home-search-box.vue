@@ -14,14 +14,14 @@
     <div class="section date-range bottom-gray-line" @click="dateRangeHandle">
       <div class="start">
         <span>入住</span>
-        <span>{{ startDate }}</span>
+        <span>{{ startDateStr }}</span>
       </div>
       <!-- <div class="stay">{{ `共${dateRange}日` }}</div> -->
       <div class="stay">共{{ dateRange }}天</div>
 
       <div class="end">
         <span>离店</span>
-        <span>{{ endDate }}</span>
+        <span>{{ endDateStr }}</span>
       </div>
     </div>
     <van-calendar
@@ -66,8 +66,9 @@
 import { useRouter } from "vue-router";
 import useCityStore from "@/store/modules/city";
 import { storeToRefs } from "pinia";
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { formatMonthDay, getDiffDays } from "@/utils/format_date";
+import useMainStore from "@/store/modules/main";
 
 const router = useRouter();
 const cityStore = useCityStore();
@@ -94,10 +95,12 @@ const geolocationGet = () => {
 };
 
 /* 日期范围处理 */
-const nowDate = new Date();
-const startDate = ref(formatMonthDay(nowDate));
-const endDate = ref(formatMonthDay(nowDate.setDate(nowDate.getDate() + 1)));
-const dateRange = ref(1);
+const mainStore = useMainStore();
+const { startDate, endDate } = storeToRefs(mainStore);
+
+const startDateStr = computed(() => formatMonthDay(startDate.value));
+const endDateStr = computed(() => formatMonthDay(endDate.value));
+const dateRange = ref(getDiffDays(startDate.value, endDate.value));
 /* 我求你了false别加引号，num类型的也是 */
 const show = ref(false);
 const dateRangeHandle = () => {
@@ -106,11 +109,12 @@ const dateRangeHandle = () => {
 };
 
 const onConfirm = (dateSelected) => {
-  startDate.value = formatMonthDay(dateSelected[0]);
-  endDate.value = formatMonthDay(dateSelected[1]);
+  mainStore.startDate = dateSelected[0];
+  mainStore.endDate = dateSelected[1];
+
   // dateRange.value = (dateSelected[1] - dateSelected[0]) / (60 * 1000 * 60 * 24);
   dateRange.value = getDiffDays(dateSelected[0], dateSelected[1]);
-  console.log("dateRange", dateRange.value);
+  // console.log("dateRange", dateRange.value);
   show.value = false;
 };
 
@@ -135,6 +139,8 @@ const searchBtnClick = () => {
     },
   });
 };
+
+/* 类别展示 */
 </script>
 
 <style lang="less" scoped>

@@ -64,7 +64,6 @@ const itemClick = (index, nextPath) => {
 
     &.active {
       // 我求你，颜色不要加引号!!!!!!!!!!!!;
-
       color: var(--primary-color);
     }
   }

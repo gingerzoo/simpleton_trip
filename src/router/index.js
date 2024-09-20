@@ -9,12 +9,10 @@ const router = createRouter({
     },
     {
       path: "/home",
-
       component: () => import("@/views/home/home.vue"),
     },
     {
       path: "/favor",
-
       component: () => import("@/views/favor/favor.vue"),
     },
     {
@@ -40,6 +38,10 @@ const router = createRouter({
       meta: {
         hideTabBar: true,
       },
+    },
+    {
+      path: "/detail/:houseId",
+      component: () => import("@/views/detail/detail.vue"),
     },
   ],
 });

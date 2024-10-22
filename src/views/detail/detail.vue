@@ -15,19 +15,20 @@
         <div class="house-main">
             <information :houseData="mainData?.topModule"/>
             <facility :facility-data="mainData?.dynamicModule.facilityModule.houseFacility"/>
+            <landlord :landlord-data="mainData?.dynamicModule.landlordModule"/>
+            <comment :comment-data="mainData?.dynamicModule.commentModule"/>
+
         </div>
-
-
-
-
     </div>
 </template>
 
 <script setup>
 import {useRoute, useRouter} from 'vue-router';
+import comment from './cpns/comment.vue';
 import swipper from "./cpns/swipper.vue";
 import information from './cpns/information.vue';
 import facility from './cpns/facility.vue';
+import landlord from './cpns/landlord.vue';
 import { getDetailInfos } from '@/services';
 import {ref,computed} from 'vue';
 

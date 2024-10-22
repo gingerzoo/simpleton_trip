@@ -35,6 +35,7 @@ header {
     font-weight: 700;
     padding: 10px 0;
     border-bottom: 2px solid rgb(240, 242, 241);
+    margin-bottom: 10px;
 }
 
 footer {
@@ -43,7 +44,7 @@ footer {
     align-items: center;
     color: var(--primary-color);
     font-weight: 700;
-
+    margin-top: 30px;
 }
 
 </style>

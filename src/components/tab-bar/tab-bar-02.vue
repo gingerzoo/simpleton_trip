@@ -36,7 +36,6 @@ const route = useRoute();
 const active = ref(0);
 
 watch(route, (newValue, preValue) => {
-  console.log("route发生了变化", newValue);
   active.value = tabbarData.findIndex(
     (item, index) => item.path == newValue.path
   );

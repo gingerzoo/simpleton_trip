@@ -12,7 +12,6 @@
           @click="handleDetailClick(house.data)"
 
         />
-
         <HouseItemV1
           v-else-if="house.discoveryContentType === 9"
           :itemData="house.data"
@@ -34,11 +33,9 @@ const homeStore = useHomeStore();
 const { houseList } = storeToRefs(homeStore);
 const router = useRouter();
 function handleDetailClick(item) {
-  console.log("houseDetail-------------------", item)
   router.push({
     path: `/detail/${item.houseId}`,
   });
-
 }
 </script>
 

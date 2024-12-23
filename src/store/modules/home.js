@@ -10,7 +10,7 @@ const useHomeStore = defineStore("home", {
     hotWords: [],
     categories: [],
     houseList: [],
-    currentPage: 1,
+    currentPage: 0,
   }),
   actions: {
     async fetchHomeHotWords() {
@@ -22,10 +22,12 @@ const useHomeStore = defineStore("home", {
       this.categories = res.data;
     },
     async fetchHomeHouseList() {
+      this.currentPage++;
       const res = await getHomeHouseList(this.currentPage);
       // this.houseList = res.data;
       this.houseList.push(...res.data);
-      this.currentPage++;
+      console.log("fetchHomeHouseList被调用---currentPage------",this.currentPage)
+
     },
   },
 });

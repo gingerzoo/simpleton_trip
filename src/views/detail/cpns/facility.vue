@@ -19,13 +19,9 @@
 
                         </ul>
                     </div>
-
-
-
                 </template>
             </div>
         </DetailSection>
-
     </div>
 </template>
 
@@ -43,11 +39,9 @@
     }
  })
 
- console.log("facilityData-----------------", props.facilityData);
  const selectData = computed(() => {
     return props.facilityData.facilitySort?.map(item => props.facilityData.houseFacilitys[item])
  })
-
 </script>
 
 <style lang="less" scoped>

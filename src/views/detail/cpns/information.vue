@@ -45,11 +45,9 @@
             </div>
         </div>
     </div>
-
 </template>
 
 <script setup>
-
 defineProps({
     houseData:{
         type:Object,
@@ -70,7 +68,9 @@ defineProps({
 
     .house-tag{
         display: flex;
-        column-gap: 4px;
+        flex-wrap: wrap;
+        column-gap: 6px;
+        row-gap: 8px;
         margin: 10px 0;
         .tag-item {
             padding: 0 2px;
@@ -89,7 +89,11 @@ defineProps({
     }
 
     .left {
+        flex: 1;
         font-weight: 700;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         .score-comment {
             color: rgb(36, 39, 38);
             .overall {
@@ -106,6 +110,7 @@ defineProps({
     }
     .right {
         color:var(--primary-color);
+        margin-left: 5px;
     }
 }
 

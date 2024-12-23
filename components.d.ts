@@ -15,6 +15,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     TabBar: typeof import('./src/components/tab-bar/tab-bar.vue')['default']
     TabBar02: typeof import('./src/components/tab-bar/tab-bar-02.vue')['default']
+    TabControl: typeof import('./src/components/tab-control/tab-control.vue')['default']
     TopBar: typeof import('./src/components/top-bar/top-bar.vue')['default']
     TorBarV2: typeof import('./src/components/top-bar/tor-bar-v2.vue')['default']
     VanCalendar: typeof import('vant/es')['Calendar']

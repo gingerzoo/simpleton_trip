@@ -4,7 +4,7 @@
     <section>
         <slot></slot>
     </section>
-    <footer>
+    <footer v-if="footerText">
         <span>
             {{  footerText }}
         </span>
@@ -34,8 +34,8 @@ header {
     font-size: 20px;
     font-weight: 700;
     padding: 10px 0;
-    border-bottom: 2px solid rgb(240, 242, 241);
-    margin-bottom: 10px;
+    border-bottom: 3px solid rgb(240, 242, 241);
+    margin: 10px 0;
 }
 
 footer {
@@ -44,7 +44,7 @@ footer {
     align-items: center;
     color: var(--primary-color);
     font-weight: 700;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 </style>

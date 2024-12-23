@@ -33,7 +33,6 @@ const props=defineProps({
         }
     }
 })
-console.log("swipeData-----------------------------",props.itemData);
 const filterdata = {};
 
 
@@ -71,9 +70,6 @@ const getIndex=(item)=>{
     return curIndex === -1? 1:curIndex+1;
 
 }
-
-
-console.log("filterdata-----------------------------",filterdata)
 
 
 </script>
